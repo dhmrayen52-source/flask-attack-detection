@@ -1,0 +1,59 @@
+import joblib
+import pandas as pd
+
+# Charger le modèle et le scaler
+model = joblib.load("modele_logreg.pkl")
+scaler = joblib.load("scaler.pkl")
+
+# Nouvelle donnée
+nouveau = {
+    'dur': [0.05],
+    'proto': [6],
+    'service': [2],
+    'state': [4],
+    'spkts': [20],
+    'dpkts': [25],
+    'sbytes': [1500],
+    'dbytes': [2300],
+    'rate': [0.2],
+    'sttl': [255],
+    'dttl': [64],
+    'sload': [0.1],
+    'dload': [0.15],
+    'sloss': [0],
+    'dloss': [0],
+    'sinpkt': [0.002],
+    'dinpkt': [0.003],
+    'sjit': [0.1],
+    'djit': [0.1],
+    'swin': [2000],
+    'stcpb': [12345],
+    'dtcpb': [54321],
+    'dwin': [2000],
+    'tcprtt': [0.05],
+    'synack': [0.02],
+    'ackdat': [0.03],
+    'smean': [300],
+    'dmean': [400],
+    'trans_depth': [1],
+    'response_body_len': [0],
+    'ct_srv_src': [2],
+    'ct_state_ttl': [3],
+    'ct_dst_ltm': [1],
+    'ct_src_dport_ltm': [2],
+    'ct_dst_sport_ltm': [1],
+    'ct_dst_src_ltm': [2],
+    'is_ftp_login': [0],
+    'ct_ftp_cmd': [0],
+    'ct_flw_http_mthd': [1],
+    'ct_src_ltm': [1],
+    'ct_srv_dst': [2],
+    'is_sm_ips_ports': [0],
+    'attack_cat': [1]
+}
+
+df_nouveau = pd.DataFrame(nouveau)
+df_scaled = scaler.transform(df_nouveau)
+
+prediction = model.predict(df_scaled)
+print("Résultat :", "Attack" if prediction[0] == 1 else "Benign")

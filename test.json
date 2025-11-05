@@ -1,0 +1,19 @@
+{
+  "Header_Length": 20,
+  "Protocol Type": 6,
+  "Time_To_Live": 64,
+  "Rate": 0.5,
+  "fin_flag_number": 0,
+  "syn_flag_number": 1,
+  "rst_flag_number": 0,
+  "psh_flag_number": 0,
+  "ack_flag_number": 1,
+  "ece_flag_number": 0,
+  "urg_flag_number": 0,
+  "cwr_flag_number": 0,
+  "ack": 1,
+  "syn": 0,
+  "fin": 0,
+  "rst": 0,
+  "protocol_type": 1
+}
